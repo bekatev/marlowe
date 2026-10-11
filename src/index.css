@@ -1,0 +1,255 @@
+:root {
+  color-scheme: dark;
+  --brass: #e3c27a;
+  --cream: #f6ecd9;
+  --muted: #cbbba4;
+  --felt: #0e6a42;
+  --ink: #100c09;
+  --wood: rgba(20, 12, 8, 0.78);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  height: 100%;
+  position: relative;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+}
+
+.stage canvas {
+  display: block;
+}
+
+.hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  user-select: none;
+}
+
+.topbar,
+.rail,
+.felt-readout {
+  pointer-events: none;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px 28px 48px;
+  background: linear-gradient(to bottom, rgba(8, 6, 4, 0.78), transparent);
+}
+
+.mark {
+  margin: 0;
+  font-family: Palatino, "Palatino Linotype", Georgia, serif;
+  font-size: 34px;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+}
+
+.room {
+  margin: 6px 0 0;
+  color: var(--brass);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.balance {
+  margin: 0;
+  text-align: right;
+}
+
+.balance span,
+.status {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.balance strong {
+  display: block;
+  margin-top: 2px;
+  font-family: Palatino, Georgia, serif;
+  font-size: 32px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.felt-readout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: -8vh;
+}
+
+.outcome {
+  margin: 0;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(12, 8, 6, 0.72);
+  font-family: Palatino, Georgia, serif;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+}
+
+.outcome-win {
+  color: var(--brass);
+}
+
+.outcome-lose {
+  color: #e7b2a8;
+}
+
+.outcome-push,
+.outcome-idle {
+  color: var(--cream);
+}
+
+.totals {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  min-height: 1.2em;
+  color: var(--cream);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
+
+.rail {
+  padding: 36px 22px 22px;
+  background: linear-gradient(to top, rgba(8, 6, 4, 0.92), rgba(8, 6, 4, 0.2) 70%, transparent);
+}
+
+.status {
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  pointer-events: auto;
+}
+
+.chips,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chip,
+.actions button {
+  border: 1px solid rgba(227, 194, 122, 0.45);
+  cursor: pointer;
+}
+
+.chip {
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border-width: 3px;
+  border-radius: 50%;
+  border-color: rgba(255, 255, 255, 0.4);
+  font-weight: 750;
+}
+
+.chip.is-on {
+  box-shadow: 0 0 0 3px rgba(227, 194, 122, 0.55);
+}
+
+.actions button {
+  min-width: 108px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: var(--cream);
+  background: rgba(36, 23, 15, 0.92);
+}
+
+.actions button.primary {
+  color: white;
+  background: var(--felt);
+  border-color: #9ed8b6;
+}
+
+.chip:hover:not(:disabled),
+.actions button:hover:not(:disabled) {
+  border-color: var(--brass);
+}
+
+.chip:disabled,
+.actions button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.chip:focus-visible,
+.actions button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    padding: 16px 16px 36px;
+  }
+
+  .mark {
+    font-size: 28px;
+  }
+
+  .balance strong,
+  .outcome {
+    font-size: 26px;
+  }
+
+  .felt-readout {
+    margin-top: -4vh;
+  }
+
+  .chip {
+    width: 50px;
+    height: 50px;
+  }
+}
